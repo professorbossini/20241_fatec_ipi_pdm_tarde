@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import Pedido from './Pedido'
+import Cartao from './Cartao'
 const App = () => {
   return (
     <div className="container border rounded mt-2">
@@ -16,27 +17,30 @@ const App = () => {
       <div className="row">
 
         <div className="col-sm-12 col-lg-4">
-          <Pedido 
-            data="12/03/2024"
-            icone="fa-solid fa-hdd fa-2x"
-            titulo="SSD"
-            descricao="SSD A400 256Gb"/>
+          <Cartao cabecalho="12/03/2024">
+            <Pedido 
+              icone="fa-solid fa-hdd fa-2x"
+              titulo="SSD"
+              descricao="SSD A400 256Gb"/>
+          </Cartao>
         </div>
 
         <div className="col-sm-12 col-lg-4">
-        <Pedido 
-          data="13/02/2024"
-          icone="fa-solid fa-book fa-2x"
-          titulo="Livro"
-          descricao="Concrete Mathematics - Donald Knuth"/>
+          <Cartao cabecalho="23/02/2023">
+            <Pedido 
+              icone="fa-solid fa-book fa-2x"
+              titulo="Livro"
+              descricao="Concrete Mathematics - Donald Knuth"/>
+          </Cartao>
         </div>
 
         <div className="col-sm-12 col-lg-4">
-          <Pedido 
-            icone="fa-solid fa-laptop fa-2x"
-            data="21/01/2023"
-            titulo="Notebook"
-            descricao="Notebook 8Gb i7 "/>
+          <Cartao cabecalho="12/12/2022">
+            <Pedido 
+              icone="fa-solid fa-laptop fa-2x"
+              titulo="Notebook"
+              descricao="Notebook 8Gb i7 "/>
+          </Cartao>
         </div>
 
       </div>
