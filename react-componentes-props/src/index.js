@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
-
+import Pedido from './Pedido'
 const App = () => {
   return (
     <div className="container border rounded mt-2">
@@ -16,54 +16,27 @@ const App = () => {
       <div className="row">
 
         <div className="col-sm-12 col-lg-4">
-          <div className="card">
-            <div className="card-header text-muted">
-              20/04/2023
-            </div>
-            <div className="card-body d-flex">
-              <div className='d-flex align-items-center'>
-                <i className="fa-solid fa-book fa-2x"></i>
-              </div>
-              <div className='flex-grow-1 ms-2 border p-2'>
-                <h4 className="text-center">Livro</h4>
-                <p className='text-center'>Concrete Mathematics - Donald Knuth</p>
-              </div>
-            </div>
-          </div>
+          <Pedido 
+            data="12/03/2024"
+            icone="fa-solid fa-hdd fa-2x"
+            titulo="SSD"
+            descricao="SSD A400 256Gb"/>
         </div>
 
         <div className="col-sm-12 col-lg-4">
-          <div className="card">
-              <div className="card-header text-muted">
-                21/04/2023
-              </div>
-              <div className="card-body d-flex">
-                <div className='d-flex align-items-center'>
-                  <i className="fa-solid fa-laptop fa-2x"></i>
-                </div>
-                <div className='flex-grow-1 ms-2 border p-2'>
-                  <h4 className="text-center">Notebook</h4>
-                  <p className='text-center'>i7 - 16Gb</p>
-                </div>
-              </div>
-            </div>
+        <Pedido 
+          data="13/02/2024"
+          icone="fa-solid fa-book fa-2x"
+          titulo="Livro"
+          descricao="Concrete Mathematics - Donald Knuth"/>
         </div>
 
         <div className="col-sm-12 col-lg-4">
-          <div className="card">
-              <div className="card-header text-muted">
-                21/02/2024
-              </div>
-              <div className="card-body d-flex">
-                <div className='d-flex align-items-center'>
-                  <i className="fa-solid fa-memory fa-2x"></i>
-                </div>
-                <div className='flex-grow-1 ms-2 border p-2'>
-                  <h4 className="text-center">SSD</h4>
-                  <p className='text-center'>256Gb</p>
-                </div>
-              </div>
-            </div>
+          <Pedido 
+            icone="fa-solid fa-laptop fa-2x"
+            data="21/01/2023"
+            titulo="Notebook"
+            descricao="Notebook 8Gb i7 "/>
         </div>
 
       </div>
