@@ -5,19 +5,18 @@ export default class Busca extends Component {
   state = {
     termoDaBusca: ''
   }
-
   onTermoAlterado = (event) => {
     console.log(event.target.value)
     this.setState({termoDaBusca: event.target.value})
   }
   onFormSubmit = (event) => {
     event.preventDefault()
-    
+    this.props.onBuscaRealizada()
   }
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <div class="flex flex-column">
+        <div className="flex flex-column">
           <span className="p-input-icon-left w-full">
             <i className="pi pi-search"/>
             <InputText
