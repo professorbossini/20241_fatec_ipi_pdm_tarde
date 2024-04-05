@@ -1,14 +1,22 @@
 import React from 'react'
 import Busca from "./Busca";
 import env from 'react-dotenv'
+import { createClient } from 'pexels'
 
 export default class App extends React.Component{
+
+  pexelsClient = null
   onBuscaRealizada = (termo) => {
-    console.log(termo)
+    this.pexelsClient.photos.search({query: termo, per_page: 2}).then((photos) => {
+      console.log(photos)
+    })
   }
+
+  componentDidMount(){
+    this.pexelsClient = createClient(env.PEXELS_KEY)
+  }
+
   render(){
-    console.log(env.PEXELS_KEY)
-    console.log(window.env.PEXELS_KEY)
     return (
       <div 
         className="grid border-round border-1 border-400 justify-content-center w-9 m-auto">
