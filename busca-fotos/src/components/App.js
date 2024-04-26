@@ -2,13 +2,20 @@ import React from 'react'
 import Busca from "./Busca";
 import env from 'react-dotenv'
 import { createClient } from 'pexels'
+import ListaImagens from './ListaImagens';
 
 export default class App extends React.Component{
 
+  state = {
+    photos: []
+  }
+
   pexelsClient = null
   onBuscaRealizada = (termo) => {
-    this.pexelsClient.photos.search({query: termo, per_page: 2}).then((photos) => {
-      console.log(photos)
+    this.pexelsClient.photos.search({query: termo, per_page: 2}).then((result) => {
+      // console.log(photos)
+      this.setState({photos: result.photos})
+
     })
   }
 
@@ -26,6 +33,11 @@ export default class App extends React.Component{
           <div className="col-8">
             <Busca 
               onBuscaRealizada={this.onBuscaRealizada}/>
+          </div>
+          <div className="col-8">
+            {
+              <ListaImagens photos={this.state.photos}/>
+            }
           </div>
       </div>
     )
