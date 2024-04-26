@@ -1,9 +1,10 @@
 import React from 'react'
 import Busca from "./Busca";
 import env from 'react-dotenv'
-import { createClient } from 'pexels'
 import ListaImagens from './ListaImagens';
 import PexelsLogo from './PexelsLogo';
+import pexelsClient from '../utils/pexelsClient';
+// import { createClient } from 'pexels'
 
 export default class App extends React.Component{
 
@@ -11,18 +12,26 @@ export default class App extends React.Component{
     photos: []
   }
 
-  pexelsClient = null
-  onBuscaRealizada = (termo) => {
-    this.pexelsClient.photos.search({query: termo, per_page: 2}).then((result) => {
-      console.log(result.photos)
-      this.setState({photos: result.photos})
+  // pexelsClient = null
+  // onBuscaRealizada = (termo) => {
+  //   this.pexelsClient.photos.search({query: termo, per_page: 2}).then((result) => {
+  //     console.log(result.photos)
+  //     this.setState({photos: result.photos})
 
+  //   })
+  // }
+
+  onBuscaRealizada = (termo) => {
+    pexelsClient.get('/search', {
+      params: {query: termo, per_page: 4}
+    }).then(result => {
+      this.setState({photos: result.data.photos})
     })
   }
 
-  componentDidMount(){
-    this.pexelsClient = createClient(env.PEXELS_KEY)
-  }
+  // componentDidMount(){
+  //   this.pexelsClient = createClient(env.PEXELS_KEY)
+  // }
 
   render(){
     return (
