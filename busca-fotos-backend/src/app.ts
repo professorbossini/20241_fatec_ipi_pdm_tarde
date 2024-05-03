@@ -2,13 +2,13 @@ import dotenv from 'dotenv'
 dotenv.config()
 import express from 'express'
 import axios from 'axios'
+import cors from 'cors'
 
 const { PORT, PEXELS_KEY } = process.env
 
 const app = express()
 app.use(express.json())
-
-
+app.use(cors())
 app.get('/search', async (req, res) => {
   const client = axios.create({
     baseURL: 'http://api.pexels.com/v1/',
@@ -16,11 +16,13 @@ app.get('/search', async (req, res) => {
       Authorization: PEXELS_KEY
     }
   })
+  console.log(req.query)
   const result = await client.get('/search', {
     params: {
-      query: req.query.termo,
+      query: req.query.query,
       per_page: req.query.per_page
-    }
+    },
+    
   })
 
   res.json(result.data)
