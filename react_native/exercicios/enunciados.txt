@@ -1,0 +1,9 @@
+03/05/2024
+Ajustar o projeto primeiro-projeto da seguinte forma:
+
+- Converta o componente atual para que ele seja definido por meio de uma classe
+- Use um componente textual para capturar dois valores numéricos do usuário
+- Use um botão para fazer  a soma deles
+- Exiba o resultado em outro componente textual não editável
+- Vasculhe o site oficial do React Native para encontrar os componentes visuais mais apropriados e descobrir como eles funcionam
+
