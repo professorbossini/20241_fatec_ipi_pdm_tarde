@@ -1,4 +1,9 @@
 import {
+  useState
+} from 'react'
+
+import {
+  Alert,
   FlatList,
   Pressable,
   StyleSheet,
@@ -8,8 +13,8 @@ import {
 } from 'react-native';
 
 import {
-  useState
-} from 'react'
+  AntDesign
+} from '@expo/vector-icons';
 
 type Lembrete = {
   id: string;
@@ -35,6 +40,39 @@ export default function App() {
       setLembrete('')
     }
   }
+
+  const remover: Function = (lembrete: Lembrete): void => {
+    //exibe um Alert para confirmar se o usuário quer mesmo remover
+    Alert.alert(
+      //titulo
+      'Remover lembrete',
+      //mensagem
+      `Deseja remover este lembrete? ${lembrete.texto}`,
+      //coleção de botões
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel'
+        },
+        {
+          text: 'Remover',
+          style: 'destructive',
+          onPress: () => {
+            setLembretes(
+              lembretesAtual => lembretesAtual.filter(item => item.id !== lembrete.id)
+            )
+          }
+        }
+      ]
+    )
+    //busca na lista pelo id do lembrete
+    //remove da lista
+    //atualiza o estado
+  }
+
+  const atualizar = () => {
+    
+  }
   return (
     <View style={styles.container}>
       <TextInput
@@ -58,7 +96,26 @@ export default function App() {
         renderItem={lembrete => (
           <View 
             style={styles.listItem}>
-            <Text>{lembrete.item.texto}</Text>
+            <Text
+              style={styles.listItemText}>
+                {lembrete.item.texto}
+            </Text>
+            <View
+              style={styles.listItemButtons}>
+              <Pressable
+                onPress={() => remover(lembrete.item)}>
+                <AntDesign
+                  name="delete"
+                  size={24}>
+                </AntDesign>
+              </Pressable>
+              <Pressable>
+                <AntDesign 
+                  name='edit'
+                  size={24}
+                />
+              </Pressable>
+            </View>
           </View>
         )}
       />
@@ -106,6 +163,16 @@ const styles = StyleSheet.create({
     borderBottomColor: 'gray',
     backgroundColor: '#F0F0F0',
     textAlign: 'center',
-    margin: 8
+    margin: 8,
+    flexDirection: 'row'
+  },
+  listItemText:{
+    width: '70%',
+    textAlign: 'center'
+  },
+  listItemButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '30%'
   }
 });
