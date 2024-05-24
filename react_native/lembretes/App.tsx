@@ -1,5 +1,6 @@
 import {
-  useState
+  useState,
+  useEffect
 } from 'react'
 
 import {
@@ -16,6 +17,8 @@ import {
   AntDesign
 } from '@expo/vector-icons';
 
+import axios from 'axios';
+
 type Lembrete = {
   id?: string;
   texto: string;
@@ -25,6 +28,13 @@ export default function App() {
   const [lembrete, setLembrete] = useState <Lembrete | null>(null)
   const [lembretes, setLembretes] = useState <Lembrete[]> ([])
   const [emModoEdicao, setEmModoEdicao] = useState(false)
+  useEffect(() => {
+    const vai: Function = async () => {
+      const lembretes = (await axios.get('http://localhost:3000/lembretes')).data
+      setLembretes(lembretes)
+    }
+    vai()
+  }, [])
   const adicionar = () => {
     if(lembrete?.texto === '')
         alert('Lembrete não pode ser vazio')
